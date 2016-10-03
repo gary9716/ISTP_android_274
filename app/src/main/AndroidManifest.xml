@@ -17,9 +17,16 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBMD68lsqxqfOTlLCV6cU5pUK6C7Bz0iZw"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".PokemonListActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".CustomizedActivity" />
@@ -27,11 +34,7 @@
         <activity
             android:name=".DrawerActivity"
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".TestThreadActivity">
 

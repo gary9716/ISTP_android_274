@@ -18,6 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
 import fr.castorflex.android.circularprogressbar.CircularProgressDrawable;
 
 
@@ -42,6 +48,9 @@ public class MainActivity extends CustomizedActivity implements View.OnClickList
 
     public final static String nameOfTheTrainerKey = "nameOfTheTrainer";
     public final static String selectedIndexKey = "selectedIndex";
+
+
+    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +100,26 @@ public class MainActivity extends CustomizedActivity implements View.OnClickList
 
             confirmBtn.performClick();
         }
+
+        callbackManager = CallbackManager.Factory.create();
+        final LoginButton loginButton = (LoginButton)findViewById(R.id.loginButton);
+
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                loginResult.getAccessToken();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
     }
 
     @Override
@@ -130,6 +159,12 @@ public class MainActivity extends CustomizedActivity implements View.OnClickList
 
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
