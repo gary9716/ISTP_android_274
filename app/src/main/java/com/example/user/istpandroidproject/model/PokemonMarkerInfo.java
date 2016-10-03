@@ -86,6 +86,10 @@ public class PokemonMarkerInfo implements ImageLoadingListener {
             Date date = new Date(expirationTime - time);
 
             marker.setSnippet("Remain Time: " + dateFormat.format(date));
+            if(marker.isInfoWindowShown()) {
+                marker.hideInfoWindow();
+                marker.showInfoWindow();
+            }
             return false;
         }
         else if (type == PokemonMarkerType.STOP)
@@ -101,6 +105,10 @@ public class PokemonMarkerInfo implements ImageLoadingListener {
                 Date date = new Date(expirationTime - time);
 
                 marker.setSnippet("Remain Time: " + dateFormat.format(date));
+                if(marker.isInfoWindowShown()) {
+                    marker.hideInfoWindow();
+                    marker.showInfoWindow();
+                }
             }
             return false;
         }
